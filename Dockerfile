@@ -23,6 +23,5 @@ WORKDIR /embflow
 
 RUN R -e 'source("scripts/download_data.r")'
 
-# Run R
-CMD ["R"]
+
 
