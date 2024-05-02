@@ -85,7 +85,7 @@ fig_5a = function() {
     df_src_targ = mctnetwork_get_egc_on_cluster_transition(mct = mct,min_time = 1,max_time = 13,type1 = type1,type2 = type2)
     lfp_src_targ = cbind(lfp_src_targ,df_src_targ$lf)
     f1 = pmax(log2(df_src_targ$src + 1e-5),log2(df_src_targ$targ + 1e-5)) > -15
-    f2 = abs(df_src_targ$lf) > 1
+    f2 = abs(df_src_targ$lf) > 0.5
     
     diff_genes_ls[[i]] = rownames(df_src_targ)[f1 & f2]
   }
@@ -108,7 +108,7 @@ fig_5a = function() {
     return(-a)
   })
   
-  f = (row_max > row_max2 + 0.5 & (row_max2 < 1))
+  f = (row_max > row_max2)
   
   genes1 = rownames(lft)[f]
   genes1_ord = order(100*apply(lft[genes1,],1,which.max) + row_max[genes1])
